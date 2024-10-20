@@ -6,12 +6,16 @@ st.title("My Super Awesome OpenAI API Deployment!")
 
 generator = pipeline('text-generation', model='gpt2')
 
-### user input
+### user's prompt input
 
 prompt = st.text_input("Enter your prompt:")
 
+### user's tokens input
 
-output = generator(prompt, max_length=20, num_return_sequences=1, truncation=True)
+tokens = st.number_input ("Number of tokens:")
+
+
+output = generator(prompt, tokens , num_return_sequences=1, truncation=True)
 
 st.write(output[0]['generated_text'])
 
