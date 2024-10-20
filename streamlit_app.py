@@ -2,21 +2,24 @@ import streamlit as st
 from openai import OpenAI
 import os
 
-### Load your API Key
-my_secret_key = st.secrets['MyOpenAIKey']
-os.environ["OPENAI_API_KEY"] = my_secret_key
+st.title("My Super Awesome OpenAI API Deployment!")
 
+prompt = st.text_input("What is your prompt today?", "Damascus is")
+
+### Load your API Key
+os.environ["OPENAI_API_KEY"] = st.secrets["OpenAIkey"]
+
+### OpenAI stuff
 client = OpenAI()
 response = client.chat.completions.create(
-  model="gpt2",
+  model="gpt-4o-mini",
   messages=[
     {"role": "system", "content": "Complete the following prefix"},
-    {"role": "user", "content": "Damascus is a"}
+    {"role": "user", "content": prompt}
   ],
-  n=10,
-  max_tokens=20
 )
 
-### Print all 10 completions:
-for i in range(10):
- st.write(response.choices[i].message.content)
+### Display
+st.write(
+    response.choices[0].message.content
+)
