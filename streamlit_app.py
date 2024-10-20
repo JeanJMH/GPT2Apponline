@@ -12,7 +12,7 @@ os.environ["OPENAI_API_KEY"] = st.secrets["OpenAIkey"]
 ### OpenAI stuff
 client = OpenAI()
 response = client.chat.completions.create(
-  model="gpt-4o-mini",
+  model="gpt2",
   messages=[
     {"role": "system", "content": "Complete the following prefix"},
     {"role": "user", "content": prompt}
