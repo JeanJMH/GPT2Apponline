@@ -2,7 +2,7 @@ import streamlit as st
 from transformers import pipeline
 import os
 
-st.title("My Super Awesome OpenAI API Deployment!")
+st.title("Deploy a GPT2 App online")
 
 generator = pipeline('text-generation', model='gpt2')
 
