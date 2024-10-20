@@ -12,7 +12,7 @@ prompt = st.text_input("Enter your prompt:")
 
 ### user's tokens input
 
-tokens = st.number_input ("Number of tokens:")
+tokens = st.number_input ("Number of tokens:", min_value=20, max_value=400, value=100 )
 
 
 output = generator(prompt, tokens , num_return_sequences=1, truncation=True)
