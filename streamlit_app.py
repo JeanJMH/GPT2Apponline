@@ -1,25 +1,13 @@
 import streamlit as st
-from openai import OpenAI
+from transformers import pipeline
 import os
 
 st.title("My Super Awesome OpenAI API Deployment!")
 
-prompt = st.text_input("What is your prompt today?", "Damascus is")
+generator = pipeline('text-generation', model='gpt2')
 
-### Load your API Key
-os.environ["OPENAI_API_KEY"] = st.secrets["OpenAIkey"]
+output = generator("Damascus is a", max_length=20, num_return_sequences=1, truncation=True))
 
-### OpenAI stuff
-client = OpenAI()
-response = client.chat.completions.create(
-  model="gpt2",
-  messages=[
-    {"role": "system", "content": "Complete the following prefix"},
-    {"role": "user", "content": prompt}
-  ],
-)
+st.write(output[0]['generated_text'])
 
 ### Display
-st.write(
-    response.choices[0].message.content
-)
