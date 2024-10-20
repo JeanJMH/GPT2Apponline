@@ -15,7 +15,7 @@ prompt = st.text_input("Enter your prompt:")
 tokens = st.number_input ("Number of tokens:", min_value=20, max_value=400, value=100 )
 
 
-output = generator(prompt, tokens , num_return_sequences=1, truncation=True)
+output = generator(prompt, max_length=tokens, num_return_sequences=1, truncation=True)
 
 st.write(output[0]['generated_text'])
 
